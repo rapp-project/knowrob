@@ -43,8 +43,6 @@ using namespace json_prolog_msgs;
 namespace json_prolog
 {
 
-char PrologQueryProxy::last_command_status = -127;
-
 void PrologQueryProxy::iterator::increment()
 {
   if(!query_ || data_ == query_->bindings_.end())
@@ -77,8 +75,6 @@ bool PrologQueryProxy::iterator::requestNextSolution()
   req.id = query_->query_id_;
   if(!query_->prolog_->next_solution.call(req, resp))
     throw PrologQueryProxy::QueryError("Service call failed.");
-
-  last_command_status = resp.status;
 
   switch(resp.status)
   {
@@ -163,11 +159,6 @@ std::string PrologQueryProxy::makeQueryId()
          boost::lexical_cast<std::string>(counter++);
 
   
-}
-
-char PrologQueryProxy::getStatus()
-{
-  return last_command_status;
 }
 
 }

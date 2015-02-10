@@ -93,6 +93,8 @@ public:
   iterator begin();
   iterator end() const { return iterator(); }
   void finish();
+  
+  char getStatus();
 
 private:
   // We support only single traversal. This variable is used to throw
@@ -103,6 +105,8 @@ private:
   std::list<PrologBindings> bindings_;
   
   static std::string makeQueryId();
+  
+  static char last_command_status;
 };
 
 }
