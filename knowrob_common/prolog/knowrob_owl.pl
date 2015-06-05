@@ -34,6 +34,8 @@
       get_timepoint/2,
       create_timepoint/2,
       instanceFromClass_withCheck/2,
+	subclassesOf_withCheck/2,
+	superclassesOf_withCheck/2,
       valueToAttribute_withCheck/3
     ]).
 
@@ -50,6 +52,8 @@
             class_properties_nosup(r,r,r),
             class_properties_transitive_nosup(r,r,r),
             class_properties_transitive_nosup_1(r,r,r),
+	    subclassesOf_withCheck(r,r),
+	    superclassesOf_withCheck(r,r),
             rdf_instance_from_class(r,r),
             rdf_instance_from_class(r,r,r),
 	    instanceFromClass_withCheck(r,r),
@@ -314,6 +318,13 @@ class_properties_transitive_nosup(Class, Prop, SubComp) :-
     Sub \= Class,
     class_properties_transitive_nosup(Sub, Prop, SubComp).
 %%%%%
+subclassesOf_withCheck(B,A):-
+	owl_individual_of(B, owl:'Class'),
+	owl_subclass_of(B,A).
+
+superclassesOf_withCheck(B,A):-
+	owl_individual_of(B, owl:'Class'),
+	owl_subclass_of(A,B).
 
 instanceFromClass_withCheck(B,A):-        
 	owl_subclass_of(B,owl:'Thing'),	
