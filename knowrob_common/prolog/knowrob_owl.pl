@@ -37,6 +37,8 @@
       instanceFromClass_withCheck_andAssign/3,
 	subclassesOf_withCheck/2,
 	superclassesOf_withCheck/2,
+      direct_subclassesOf_withCheck/2,
+      direct_superclassesOf_withCheck/2,
       valueToAttribute_withCheck/3
     ]).
 
@@ -59,6 +61,8 @@
             rdf_instance_from_class(r,r,r),
 	    instanceFromClass_withCheck(r,r),
             instanceFromClass_withCheck_andAssign(r,r,r),
+            direct_subclassesOf_withCheck(r,r),
+            direct_superclassesOf_withCheck(r,r),
             valueToAttribute_withCheck(r,r,r),
             create_timepoint(+,r),
             get_timepoint(r),
@@ -320,6 +324,14 @@ class_properties_transitive_nosup(Class, Prop, SubComp) :-
     Sub \= Class,
     class_properties_transitive_nosup(Sub, Prop, SubComp).
 %%%%%
+direct_subclassesOf_withCheck(B,A):-
+	owl_individual_of(B, owl:'Class'),
+	owl_direct_subclass_of(B,A).
+
+direct_superclassesOf_withCheck(B,A):-
+	owl_individual_of(B, owl:'Class'),
+	owl_direct_subclass_of(A,B).
+
 subclassesOf_withCheck(B,A):-
 	owl_individual_of(B, owl:'Class'),
 	owl_subclass_of(B,A).
@@ -329,14 +341,15 @@ superclassesOf_withCheck(B,A):-
 	owl_subclass_of(A,B).
 
 instanceFromClass_withCheck(B,A):-        
-	owl_subclass_of(B,owl:'Thing'),	
+	owl_direct_subclass_of(B,owl:'Thing'),	
 	rdf_instance_from_class(B,A).
 	
 % A = keep empty
-% B = class of instance
-% C = instance of user
+% B = class of instance (object)
+% C = instance of user (subject)
 instanceFromClass_withCheck_andAssign(B,A,C):-
 	owl_subclass_of(B,owl:'Thing'),
+	rdf_has(C,rdf:type,knowrob:'Person'),
 	rdf_instance_from_class(B,A),
 	rdf_assert(C,knowrob:'belongsToUser',A).
 	
