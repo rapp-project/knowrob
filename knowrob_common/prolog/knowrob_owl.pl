@@ -34,6 +34,7 @@
       get_timepoint/2,
       create_timepoint/2,
       instanceFromClass_withCheck/2,
+      instanceFromClass_withCheck_andAssign/3,
 	subclassesOf_withCheck/2,
 	superclassesOf_withCheck/2,
       valueToAttribute_withCheck/3
@@ -57,6 +58,7 @@
             rdf_instance_from_class(r,r),
             rdf_instance_from_class(r,r,r),
 	    instanceFromClass_withCheck(r,r),
+            instanceFromClass_withCheck_andAssign(r,r,r),
             valueToAttribute_withCheck(r,r,r),
             create_timepoint(+,r),
             get_timepoint(r),
@@ -330,6 +332,13 @@ instanceFromClass_withCheck(B,A):-
 	owl_subclass_of(B,owl:'Thing'),	
 	rdf_instance_from_class(B,A).
 	
+% A = keep empty
+% B = class of instance
+% C = instance of user
+instanceFromClass_withCheck_andAssign(B,A,C):-
+	owl_subclass_of(B,owl:'Thing'),
+	rdf_instance_from_class(B,A),
+	rdf_assert(C,knowrob:'belongsToUser',A).
 	
 % A = attribute name
 % B = subject instance

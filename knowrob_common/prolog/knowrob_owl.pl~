@@ -330,6 +330,13 @@ instanceFromClass_withCheck(B,A):-
 	owl_subclass_of(B,owl:'Thing'),	
 	rdf_instance_from_class(B,A).
 	
+% A = keep empty
+% B = class of instance
+% C = instance of user
+instanceFromClass_withCheck_andAssign(B,A,C):-
+	owl_subclass_of(B,owl:'Thing'),
+	rdf_instance_from_class(B,A),
+	rdf_assert(C,knowrob:'belongsToUser',A).
 	
 % A = attribute name
 % B = subject instance

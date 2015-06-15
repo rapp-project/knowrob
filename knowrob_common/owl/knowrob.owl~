@@ -7977,12 +7977,6 @@ For predicates that relate things to measurable quantities that characterize the
     <owl:Class rdf:about="&knowrob;Person">
         <rdfs:subClassOf rdf:resource="&knowrob;PerceptualAgent-Embodied"/>
     </owl:Class>
-
-    <!-- http://ias.cs.tum.edu/kb/knowrob.owl#Carer -->
-
-    <owl:Class rdf:about="&knowrob;Carer">
-        <rdfs:subClassOf rdf:resource="&knowrob;Person"/>
-    </owl:Class>
     
 
 
