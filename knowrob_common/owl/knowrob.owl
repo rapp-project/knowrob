@@ -92,6 +92,23 @@
         <rdfs:range rdf:resource="&knowrob;Thing"/>
         <rdfs:domain rdf:resource="&knowrob;Person"/>
     </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&knowrob;hasFallen">
+        <rdfs:range rdf:resource="&knowrob;Fall"/>
+        <rdfs:domain rdf:resource="&knowrob;Patient"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&knowrob;humanMessageType">
+        <rdfs:range rdf:resource="&knowrob;SoundMessage"/>
+        <rdfs:range rdf:resource="&knowrob;TextMessage"/>
+        <rdfs:domain rdf:resource="&knowrob;HumanMessage"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&knowrob;speaksLanguage">
+        <rdfs:range rdf:resource="&knowrob;English"/>
+        <rdfs:range rdf:resource="&knowrob;Greek"/>
+        <rdfs:domain rdf:resource="&knowrob;Agent-Generic"/>
+    </owl:ObjectProperty>
 
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -7978,14 +7995,132 @@ For predicates that relate things to measurable quantities that characterize the
         <rdfs:subClassOf rdf:resource="&knowrob;PerceptualAgent-Embodied"/>
     </owl:Class>
 
+    <!-- thanos class changes start -->
+    
     <!-- http://ias.cs.tum.edu/kb/knowrob.owl#Carer -->
 
     <owl:Class rdf:about="&knowrob;Carer">
         <rdfs:subClassOf rdf:resource="&knowrob;Person"/>
     </owl:Class>
     
-
-
+    <owl:Class rdf:about="&knowrob;Patient">
+        <rdfs:subClassOf rdf:resource="&knowrob;Person"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;HipFracture">
+        <rdfs:subClassOf rdf:resource="&knowrob;Patient"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;MildCognitiveImpairment">
+        <rdfs:subClassOf rdf:resource="&knowrob;Patient"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;TechnologyIlliterate">
+        <rdfs:subClassOf rdf:resource="&knowrob;Patient"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;SocialConcepts">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;HumanLanguage">
+        <rdfs:subClassOf rdf:resource="&knowrob;SocialConcepts"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;English">
+        <rdfs:subClassOf rdf:resource="&knowrob;HumanLanguage"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;Greek">
+        <rdfs:subClassOf rdf:resource="&knowrob;HumanLanguage"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;HumanMessage">
+        <rdfs:subClassOf rdf:resource="&knowrob;SocialConcepts"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;Answer">
+        <rdfs:subClassOf rdf:resource="&knowrob;HumanMessage"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;Confirmation">
+        <rdfs:subClassOf rdf:resource="&knowrob;Answer"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;No">
+        <rdfs:subClassOf rdf:resource="&knowrob;Answer"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;Yes">
+        <rdfs:subClassOf rdf:resource="&knowrob;Answer"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;Information">
+        <rdfs:subClassOf rdf:resource="&knowrob;HumanMessage"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;Alarm">
+        <rdfs:subClassOf rdf:resource="&knowrob;Information"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;Notification">
+        <rdfs:subClassOf rdf:resource="&knowrob;Information"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;Reminder">
+        <rdfs:subClassOf rdf:resource="&knowrob;Information"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;Question">
+        <rdfs:subClassOf rdf:resource="&knowrob;HumanMessage"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;YesNoQuestion">
+        <rdfs:subClassOf rdf:resource="&knowrob;Question"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;Modality">
+        <rdfs:subClassOf rdf:resource="&knowrob;HumanMessage"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;SoundMessage">
+        <rdfs:subClassOf rdf:resource="&knowrob;Modality"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;TextMessage">
+        <rdfs:subClassOf rdf:resource="&knowrob;Modality"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;Fall">
+        <rdfs:subClassOf rdf:resource="&knowrob;Situation"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;SocialEvent">
+        <rdfs:subClassOf rdf:resource="&knowrob;SocialEvent"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;Appointment">
+        <rdfs:subClassOf rdf:resource="&knowrob;Event-Localized"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;DataTypes">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;Bool">
+        <rdfs:subClassOf rdf:resource="&knowrob;DataTypes"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;True">
+        <rdfs:subClassOf rdf:resource="&knowrob;Bool"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&knowrob;False">
+        <rdfs:subClassOf rdf:resource="&knowrob;Bool"/>
+    </owl:Class>
+    <!-- thanos class changes end -->
+    
+    
     <!-- http://knowrob.org/kb/knowrob.owl#Person-SupportingFurniture -->
 
     <owl:Class rdf:about="&knowrob;Person-SupportingFurniture">
