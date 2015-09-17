@@ -35,11 +35,12 @@
       create_timepoint/2,
       instanceFromClass_withCheck/2,
       instanceFromClass_withCheck_andAssign/3,
-	subclassesOf_withCheck/2,
-	superclassesOf_withCheck/2,
+      subclassesOf_withCheck/2,
+      superclassesOf_withCheck/2,
       direct_subclassesOf_withCheck/2,
       direct_superclassesOf_withCheck/2,
-      valueToAttribute_withCheck/3
+      valueToAttribute_withCheck/3,
+      userCognitiveTestPerformance/7
     ]).
 
 :- use_module(library('crypt')).
@@ -64,6 +65,7 @@
             direct_subclassesOf_withCheck(r,r),
             direct_superclassesOf_withCheck(r,r),
             valueToAttribute_withCheck(r,r,r),
+            userCognitiveTestPerformance(r,r,r,r,r,r,r),
             create_timepoint(+,r),
             get_timepoint(r),
             get_timepoint(+,r),
@@ -340,8 +342,8 @@ superclassesOf_withCheck(B,A):-
 	owl_individual_of(B, owl:'Class'),
 	owl_subclass_of(A,B).
 
-instanceFromClass_withCheck(B,A):-        
-	owl_direct_subclass_of(B,owl:'Thing'),	
+instanceFromClass_withCheck(B,A):-   
+	owl_individual_of(B, owl:'Class'),   		
 	rdf_instance_from_class(B,A).
 	
 % A = keep empty
@@ -369,5 +371,23 @@ valueToAttribute_withCheck(A,B,C):-
 	 rdf_has(A,rdfs:domain,Bclass),
 	 rdf_has(A,rdfs:range,Cclass),
 	 rdf_assert(B,A,C).
+
+userCognitiveTestPerformance(A,C,B,Var,Dif,Timestamp,SC):-
+  rdf_has(__,knowrob:user,A),
+  rdf_has(B,rdf:type,C),
+  rdf_has(__,knowrob:type,B),
+  rdf_has(B,knowrob:variation,literal(type(_, Var))),
+  rdf_has(B,knowrob:difficulty,literal(type(_, Dif))),
+  rdf_has(__,knowrob:timestamp,literal(type(_, Timestamp))), Timestamp>2,
+  rdf_has(__,knowrob:score,literal(type(_, SC))).
+
+
+
+
+
+
+
+
+
 
 

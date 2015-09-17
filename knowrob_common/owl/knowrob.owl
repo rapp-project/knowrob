@@ -81,7 +81,7 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
-    // Thanos Edits in Object Properties start
+    // RAPP Edits in Object Properties start
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
@@ -110,10 +110,27 @@
         <rdfs:domain rdf:resource="&knowrob;Agent-Generic"/>
     </owl:ObjectProperty>
 
+    <owl:ObjectProperty rdf:about="&knowrob;CognitiveTestPerformanceInTest">
+        <rdfs:range rdf:resource="&knowrob;CognitiveTests"/>  
+        <rdfs:domain rdf:resource="&knowrob;PerformanceEntry"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&knowrob;CognitiveTestPerformanceOfUser">
+        <rdfs:range rdf:resource="&knowrob;Patient"/>  
+        <rdfs:domain rdf:resource="&knowrob;PerformanceEntry"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&knowrob;CognitiveTestPerformanceAtTimestamp">
+        <rdfs:range rdf:resource="&xsd;float"/>
+        <rdfs:domain rdf:resource="&knowrob;PerformanceEntry"/>
+    </owl:ObjectProperty>
+
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
-    // Thanos Edits in Object Properties end
+    // RAPP Edits in Object Properties end
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
@@ -7995,7 +8012,7 @@ For predicates that relate things to measurable quantities that characterize the
         <rdfs:subClassOf rdf:resource="&knowrob;PerceptualAgent-Embodied"/>
     </owl:Class>
 
-    <!-- thanos class changes start -->
+    <!-- RAPP class Modifications changes start -->
     
     <!-- http://ias.cs.tum.edu/kb/knowrob.owl#Carer -->
 
@@ -8118,7 +8135,42 @@ For predicates that relate things to measurable quantities that characterize the
     <owl:Class rdf:about="&knowrob;False">
         <rdfs:subClassOf rdf:resource="&knowrob;Bool"/>
     </owl:Class>
-    <!-- thanos class changes end -->
+
+
+    <!-- Cognitive exercise system class modifications start -->
+    <owl:Class rdf:about="&knowrob;CognitiveExerciseSystem">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&knowrob;CognitiveTests">
+        <rdfs:subClassOf rdf:resource="&knowrob;CognitiveExerciseSystem"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&knowrob;Arithmetic">
+        <rdfs:subClassOf rdf:resource="&knowrob;CognitiveTests"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&knowrob;BasicArithmetic">
+        <rdfs:subClassOf rdf:resource="&knowrob;Arithmetic"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&knowrob;MoneyChange">
+        <rdfs:subClassOf rdf:resource="&knowrob;Arithmetic"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&knowrob;Recall">
+        <rdfs:subClassOf rdf:resource="&knowrob;CognitiveTests"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&knowrob;PerformanceEntry">
+        <rdfs:subClassOf rdf:resource="&knowrob;CognitiveTests"/>
+    </owl:Class>
+
+
+    <!-- Cognitive exercise system class modifications end -->
+
+
+    <!-- RAPP class modifications end -->
     
     
     <!-- http://knowrob.org/kb/knowrob.owl#Person-SupportingFurniture -->
