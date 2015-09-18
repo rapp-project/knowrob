@@ -110,20 +110,50 @@
         <rdfs:domain rdf:resource="&knowrob;Agent-Generic"/>
     </owl:ObjectProperty>
 
-    <owl:ObjectProperty rdf:about="&knowrob;CognitiveTestPerformanceInTest">
-        <rdfs:range rdf:resource="&knowrob;CognitiveTests"/>  
-        <rdfs:domain rdf:resource="&knowrob;PerformanceEntry"/>
+
+
+
+    <owl:ObjectProperty rdf:about="&knowrob;cognitiveTestVariation">
+        <rdfs:range rdf:resource="&xsd;int"/> 
+        <rdfs:domain rdf:resource="&knowrob;CognitiveTests"/>
     </owl:ObjectProperty>
 
-    <owl:ObjectProperty rdf:about="&knowrob;CognitiveTestPerformanceOfUser">
+    <owl:ObjectProperty rdf:about="&knowrob;cognitiveTestDifficulty">
+        <rdfs:range rdf:resource="&xsd;int"/> 
+        <rdfs:domain rdf:resource="&knowrob;CognitiveTests"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&knowrob;cognitiveTestFilePath">
+        <rdfs:range rdf:resource="&xsd;string"/> 
+        <rdfs:domain rdf:resource="&knowrob;CognitiveTests"/>
+    </owl:ObjectProperty>
+
+ <!--warning, I did not create a cognitiveTestSubType attribute -->
+
+
+    <owl:ObjectProperty rdf:about="&knowrob;cognitiveTestPerformedPatient">
         <rdfs:range rdf:resource="&knowrob;Patient"/>  
-        <rdfs:domain rdf:resource="&knowrob;PerformanceEntry"/>
+        <rdfs:domain rdf:resource="&knowrob;CognitiveTestPerformed"/>
     </owl:ObjectProperty>
 
-    <owl:ObjectProperty rdf:about="&knowrob;CognitiveTestPerformanceAtTimestamp">
-        <rdfs:range rdf:resource="&xsd;float"/>
-        <rdfs:domain rdf:resource="&knowrob;PerformanceEntry"/>
+    <owl:ObjectProperty rdf:about="&knowrob;cognitiveTestPerformedTestType">
+        <rdfs:range rdf:resource="&knowrob;CognitiveTests"/>  
+        <rdfs:domain rdf:resource="&knowrob;CognitiveTestPerformed"/>
     </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&knowrob;cognitiveTestPerformedScore">
+        <rdfs:range rdf:resource="&xsd;float"/>
+        <rdfs:domain rdf:resource="&knowrob;CognitiveTestPerformed"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&knowrob;cognitiveTestPerformedTimestamp">
+        <rdfs:range rdf:resource="&xsd;int"/>
+        <rdfs:domain rdf:resource="&knowrob;CognitiveTestPerformed"/>
+    </owl:ObjectProperty>
+
+
+
+
 
 
 
@@ -8158,12 +8188,16 @@ For predicates that relate things to measurable quantities that characterize the
         <rdfs:subClassOf rdf:resource="&knowrob;Arithmetic"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&knowrob;Recall">
+    <owl:Class rdf:about="&knowrob;Reasoning">
         <rdfs:subClassOf rdf:resource="&knowrob;CognitiveTests"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&knowrob;PerformanceEntry">
-        <rdfs:subClassOf rdf:resource="&knowrob;CognitiveTests"/>
+    <owl:Class rdf:about="&knowrob;StoryTelling">
+        <rdfs:subClassOf rdf:resource="&knowrob;Reasoning"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&knowrob;CognitiveTestPerformed">
+        <rdfs:subClassOf rdf:resource="&knowrob;CognitiveExerciseSystem"/>
     </owl:Class>
 
 

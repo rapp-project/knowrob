@@ -40,7 +40,10 @@
       direct_subclassesOf_withCheck/2,
       direct_superclassesOf_withCheck/2,
       valueToAttribute_withCheck/3,
-      userCognitiveTestPerformance/7
+      userCognitiveTestPerformance/8,
+      cognitiveTestsOfType/6,
+      createCognitiveTest/6,
+      cognitiveTestPerformed/8
     ]).
 
 :- use_module(library('crypt')).
@@ -65,7 +68,10 @@
             direct_subclassesOf_withCheck(r,r),
             direct_superclassesOf_withCheck(r,r),
             valueToAttribute_withCheck(r,r,r),
-            userCognitiveTestPerformance(r,r,r,r,r,r,r),
+            userCognitiveTestPerformance(r,r,r,r,r,r,r,r),
+	    cognitiveTestsOfType(r,r,r,r,r,r),
+            createCognitiveTest(r,r,r,r,r,r),
+            cognitiveTestPerformed(r,r,r,r,r,r,r,r),
             create_timepoint(+,r),
             get_timepoint(r),
             get_timepoint(+,r),
@@ -372,22 +378,40 @@ valueToAttribute_withCheck(A,B,C):-
 	 rdf_has(A,rdfs:range,Cclass),
 	 rdf_assert(B,A,C).
 
-userCognitiveTestPerformance(A,C,B,Var,Dif,Timestamp,SC):-
-  rdf_has(__,knowrob:user,A),
+userCognitiveTestPerformance(A,C,B,Var,Dif,Timestamp,SC,P):-
+  rdf_has(P,knowrob:cognitiveTestPerformedPatient,A),
   rdf_has(B,rdf:type,C),
-  rdf_has(__,knowrob:type,B),
-  rdf_has(B,knowrob:variation,literal(type(_, Var))),
-  rdf_has(B,knowrob:difficulty,literal(type(_, Dif))),
-  rdf_has(__,knowrob:timestamp,literal(type(_, Timestamp))),
-  rdf_has(__,knowrob:score,literal(type(_, SC))).
+  rdf_has(P,knowrob:cognitiveTestSubType,C),
+  rdf_has(B,knowrob:cognitiveTestVariation,literal(type(_, Var))),
+  rdf_has(B,knowrob:cognitiveTestDifficulty,literal(type(_, Dif))),
+  rdf_has(P,knowrob:cognitiveTestPerformedTimestamp,literal(type(_, Timestamp))),
+  rdf_has(P,knowrob:cognitiveTestPerformedScore,literal(type(_, SC))).
 
 
 
+cognitiveTestsOfType(A,B,Var,Path,Dif,Sub):-
+rdf_has(B,rdf:type,A),
+rdf_has(B,knowrob:cognitiveTestVariation,literal(type(_, Var))),
+rdf_has(B,knowrob:cognitiveTestFilePath,literal(type(_, Path))),
+rdf_has(B,knowrob:cognitiveTestDifficulty,literal(type(_, Dif))),
+rdf_has(B,knowrob:cognitiveTestSubType,Sub).
 
+createCognitiveTest(A,B,C,D,E,F):-
+owl_subclass_of(F,A),
+rdf_instance_from_class(A,B),
+rdf_assert(B,knowrob:cognitiveTestVariation,literal(type(xsd:string,C))),
+rdf_assert(B,knowrob:cognitiveTestDifficulty,literal(type(xsd:string,D))),
+rdf_assert(B,knowrob:cognitiveTestFilePath,literal(type(xsd:string,E))),
+rdf_assert(B,knowrob:cognitiveTestSubType,F).
 
-
-
-
-
+cognitiveTestPerformed(B,Patient,Test,TestType,Time,Score,C,D):-
+rdf_has(Test,rdf:type,TestType),
+rdf_has(Patient,rdf:type,C),
+rdf_instance_from_class(D,B),
+rdf_assert(B,knowrob:cognitiveTestPerformedPatient,Patient),
+rdf_assert(B,knowrob:cognitiveTestPerformedTestType,Test),
+rdf_assert(B,knowrob:cognitiveTestPerformedTimestamp,literal(type(xsd:string,Time))),
+rdf_assert(B,knowrob:cognitiveTestPerformedScore,literal(type(xsd:string,Score))),
+rdf_assert(B,knowrob:cognitiveTestSubType,TestType).
 
 
