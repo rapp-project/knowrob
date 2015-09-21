@@ -8176,24 +8176,52 @@ For predicates that relate things to measurable quantities that characterize the
         <rdfs:subClassOf rdf:resource="&knowrob;CognitiveExerciseSystem"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&knowrob;Arithmetic">
+    <owl:Class rdf:about="&knowrob;ArithmeticCts">
         <rdfs:subClassOf rdf:resource="&knowrob;CognitiveTests"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&knowrob;BasicArithmetic">
-        <rdfs:subClassOf rdf:resource="&knowrob;Arithmetic"/>
+    <owl:Class rdf:about="&knowrob;BasicArithmeticCts">
+        <rdfs:subClassOf rdf:resource="&knowrob;ArithmeticCts"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&knowrob;MoneyChange">
-        <rdfs:subClassOf rdf:resource="&knowrob;Arithmetic"/>
+    <owl:Class rdf:about="&knowrob;TransactionChangeCts">
+        <rdfs:subClassOf rdf:resource="&knowrob;ArithmeticCts"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&knowrob;Reasoning">
+    <owl:Class rdf:about="&knowrob;TimeDifferenceCts">
+        <rdfs:subClassOf rdf:resource="&knowrob;ArithmeticCts"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&knowrob;ReasoningCts">
         <rdfs:subClassOf rdf:resource="&knowrob;CognitiveTests"/>
     </owl:Class>
 
     <owl:Class rdf:about="&knowrob;StoryTelling">
-        <rdfs:subClassOf rdf:resource="&knowrob;Reasoning"/>
+        <rdfs:subClassOf rdf:resource="&knowrob;ReasoningCts"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&knowrob;ObjectIdentificationCts">
+        <rdfs:subClassOf rdf:resource="&knowrob;ReasoningCts"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&knowrob;ComplexStatementsCts">
+        <rdfs:subClassOf rdf:resource="&knowrob;ReasoningCts"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&knowrob;PersonalQuestionsCts">
+        <rdfs:subClassOf rdf:resource="&knowrob;ReasoningCts"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&knowrob;AwarenessCts">
+        <rdfs:subClassOf rdf:resource="&knowrob;CognitiveTests"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&knowrob;TimeDayYearCts">
+        <rdfs:subClassOf rdf:resource="&knowrob;AwarenessCts"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&knowrob;LocationCts">
+        <rdfs:subClassOf rdf:resource="&knowrob;AwarenessCts"/>
     </owl:Class>
 
     <owl:Class rdf:about="&knowrob;CognitiveTestPerformed">
