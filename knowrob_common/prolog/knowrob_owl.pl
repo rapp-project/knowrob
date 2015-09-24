@@ -379,15 +379,13 @@ valueToAttribute_withCheck(A,B,C):-
 	 rdf_assert(B,A,C).
 
 userCognitiveTestPerformance(A,C,B,Var,Dif,Timestamp,SC,P):-
-  rdf_has(P,knowrob:cognitiveTestPerformedPatient,A),
-  rdf_has(B,rdf:type,C),
-  rdf_has(P,knowrob:cognitiveTestSubType,C),
-  rdf_has(B,knowrob:cognitiveTestVariation,literal(type(_, Var))),
-  rdf_has(B,knowrob:cognitiveTestDifficulty,literal(type(_, Dif))),
-  rdf_has(P,knowrob:cognitiveTestPerformedTimestamp,literal(type(_, Timestamp))),
-  rdf_has(P,knowrob:cognitiveTestPerformedScore,literal(type(_, SC))).
-
-
+rdf_has(P,knowrob:cognitiveTestPerformedPatient,A),
+rdf_has(P,knowrob:cognitiveTestPerformedTestType,B),
+rdf_has(B,rdf:type,C),
+rdf_has(B,knowrob:cognitiveTestVariation,literal(type(_, Var))),
+rdf_has(B,knowrob:cognitiveTestDifficulty,literal(type(_, Dif))),
+rdf_has(P,knowrob:cognitiveTestPerformedTimestamp,literal(type(_, Timestamp))),
+rdf_has(P,knowrob:cognitiveTestPerformedScore,literal(type(_, SC))).
 
 cognitiveTestsOfType(A,B,Var,Path,Dif,Sub):-
 rdf_has(B,rdf:type,A),

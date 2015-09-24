@@ -379,13 +379,12 @@ valueToAttribute_withCheck(A,B,C):-
 	 rdf_assert(B,A,C).
 
 userCognitiveTestPerformance(A,C,B,Var,Dif,Timestamp,SC,P):-
-  rdf_has(P,knowrob:cognitiveTestPerformedPatient,A),
-  rdf_has(B,rdf:type,C),
-  rdf_has(P,knowrob:cognitiveTestSubType,C),
-  rdf_has(B,knowrob:cognitiveTestVariation,literal(type(_, Var))),
-  rdf_has(B,knowrob:cognitiveTestDifficulty,literal(type(_, Dif))),
-  rdf_has(P,knowrob:cognitiveTestPerformedTimestamp,literal(type(_, Timestamp))),
-  rdf_has(P,knowrob:cognitiveTestPerformedScore,literal(type(_, SC))).
+rdf_has(P,knowrob:cognitiveTestPerformedPatient,A),
+rdf_has(P,knowrob:cognitiveTestPerformedTestType,B),
+rdf_has(B,knowrob:cognitiveTestVariation,literal(type(_, Var))),
+rdf_has(B,knowrob:cognitiveTestDifficulty,literal(type(_, Dif))),
+rdf_has(P,knowrob:cognitiveTestPerformedTimestamp,literal(type(_, Timestamp))),
+rdf_has(P,knowrob:cognitiveTestPerformedScore,literal(type(_, SC))).
 
 
 
@@ -405,13 +404,10 @@ rdf_assert(B,knowrob:cognitiveTestFilePath,literal(type(xsd:string,E))),
 rdf_assert(B,knowrob:cognitiveTestSubType,F).
 
 cognitiveTestPerformed(B,Patient,Test,TestType,Time,Score,C,D):-
-rdf_has(Test,rdf:type,TestType),
-rdf_has(Patient,rdf:type,C),
 rdf_instance_from_class(D,B),
 rdf_assert(B,knowrob:cognitiveTestPerformedPatient,Patient),
 rdf_assert(B,knowrob:cognitiveTestPerformedTestType,Test),
 rdf_assert(B,knowrob:cognitiveTestPerformedTimestamp,literal(type(xsd:string,Time))),
-rdf_assert(B,knowrob:cognitiveTestPerformedScore,literal(type(xsd:string,Score))),
-rdf_assert(B,knowrob:cognitiveTestSubType,TestType).
+rdf_assert(B,knowrob:cognitiveTestPerformedScore,literal(type(xsd:string,Score))).
 
 
