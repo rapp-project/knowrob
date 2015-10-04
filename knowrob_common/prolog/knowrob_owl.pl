@@ -43,7 +43,7 @@
       userCognitiveTestPerformance/8,
       cognitiveTestsOfType/6,
       createCognitiveTest/6,
-      cognitiveTestPerformed/8
+      cognitiveTestPerformed/7
     ]).
 
 :- use_module(library('crypt')).
@@ -71,7 +71,7 @@
             userCognitiveTestPerformance(r,r,r,r,r,r,r,r),
 	    cognitiveTestsOfType(r,r,r,r,r,r),
             createCognitiveTest(r,r,r,r,r,r),
-            cognitiveTestPerformed(r,r,r,r,r,r,r,r),
+            cognitiveTestPerformed(r,r,r,r,r,r,r),
             create_timepoint(+,r),
             get_timepoint(r),
             get_timepoint(+,r),
@@ -402,14 +402,12 @@ rdf_assert(B,knowrob:cognitiveTestDifficulty,literal(type(xsd:string,D))),
 rdf_assert(B,knowrob:cognitiveTestFilePath,literal(type(xsd:string,E))),
 rdf_assert(B,knowrob:cognitiveTestSubType,F).
 
-cognitiveTestPerformed(B,Patient,Test,TestType,Time,Score,C,D):-
-rdf_has(Test,rdf:type,TestType),
+cognitiveTestPerformed(B,Patient,Test,Time,Score,C,D):-
 rdf_has(Patient,rdf:type,C),
 rdf_instance_from_class(D,B),
 rdf_assert(B,knowrob:cognitiveTestPerformedPatient,Patient),
 rdf_assert(B,knowrob:cognitiveTestPerformedTestType,Test),
 rdf_assert(B,knowrob:cognitiveTestPerformedTimestamp,literal(type(xsd:string,Time))),
-rdf_assert(B,knowrob:cognitiveTestPerformedScore,literal(type(xsd:string,Score))),
-rdf_assert(B,knowrob:cognitiveTestSubType,TestType).
+rdf_assert(B,knowrob:cognitiveTestPerformedScore,literal(type(xsd:string,Score))).
 
 
