@@ -405,6 +405,7 @@ rdf_assert(B,knowrob:cognitiveTestSubType,F).
 cognitiveTestPerformed(B,Patient,Test,Time,Score,C,D):-
 rdf_has(Patient,rdf:type,C),
 rdf_instance_from_class(D,B),
+rdf_has(Test,knowrob:cognitiveTestSubType,L),
 rdf_assert(B,knowrob:cognitiveTestPerformedPatient,Patient),
 rdf_assert(B,knowrob:cognitiveTestPerformedTestType,Test),
 rdf_assert(B,knowrob:cognitiveTestPerformedTimestamp,literal(type(xsd:string,Time))),
