@@ -40,9 +40,9 @@
       direct_subclassesOf_withCheck/2,
       direct_superclassesOf_withCheck/2,
       valueToAttribute_withCheck/3,
-      userCognitiveTestPerformance/8,
+      userCognitiveTestPerformance/7,
       cognitiveTestsOfType/6,
-      createCognitiveTest/6,
+      createCognitiveTest/5,
       cognitiveTestPerformed/7
     ]).
 
@@ -68,9 +68,9 @@
             direct_subclassesOf_withCheck(r,r),
             direct_superclassesOf_withCheck(r,r),
             valueToAttribute_withCheck(r,r,r),
-            userCognitiveTestPerformance(r,r,r,r,r,r,r,r),
+            userCognitiveTestPerformance(r,r,r,r,r,r,r),
 	    cognitiveTestsOfType(r,r,r,r,r,r),
-            createCognitiveTest(r,r,r,r,r,r),
+            createCognitiveTest(r,r,r,r,r),
             cognitiveTestPerformed(r,r,r,r,r,r,r),
             create_timepoint(+,r),
             get_timepoint(r),
@@ -378,26 +378,24 @@ valueToAttribute_withCheck(A,B,C):-
 	 rdf_has(A,rdfs:range,Cclass),
 	 rdf_assert(B,A,C).
 
-userCognitiveTestPerformance(A,C,B,Var,Dif,Timestamp,SC,P):-
+userCognitiveTestPerformance(A,C,B,Dif,Timestamp,SC,P):-
 rdf_has(P,knowrob:cognitiveTestPerformedPatient,A),
 rdf_has(P,knowrob:cognitiveTestPerformedTestType,B),
 rdf_has(B,rdf:type,C),
-rdf_has(B,knowrob:cognitiveTestVariation,literal(type(_, Var))),
 rdf_has(B,knowrob:cognitiveTestDifficulty,literal(type(_, Dif))),
 rdf_has(P,knowrob:cognitiveTestPerformedTimestamp,literal(type(_, Timestamp))),
 rdf_has(P,knowrob:cognitiveTestPerformedScore,literal(type(_, SC))).
 
-cognitiveTestsOfType(A,B,Var,Path,Dif,Sub):-
+cognitiveTestsOfType(A,B,Path,Dif,Sub,Language):-
 rdf_has(B,rdf:type,A),
-rdf_has(B,knowrob:cognitiveTestVariation,literal(type(_, Var))),
+rdf_has(B,knowrob:supportedLanguages,Language),
 rdf_has(B,knowrob:cognitiveTestFilePath,literal(type(_, Path))),
 rdf_has(B,knowrob:cognitiveTestDifficulty,literal(type(_, Dif))),
 rdf_has(B,knowrob:cognitiveTestSubType,Sub).
 
-createCognitiveTest(A,B,C,D,E,F):-
+createCognitiveTest(A,B,D,E,F):-
 owl_subclass_of(F,A),
 rdf_instance_from_class(A,B),
-rdf_assert(B,knowrob:cognitiveTestVariation,literal(type(xsd:string,C))),
 rdf_assert(B,knowrob:cognitiveTestDifficulty,literal(type(xsd:string,D))),
 rdf_assert(B,knowrob:cognitiveTestFilePath,literal(type(xsd:string,E))),
 rdf_assert(B,knowrob:cognitiveTestSubType,F).

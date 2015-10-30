@@ -105,8 +105,8 @@
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&knowrob;speaksLanguage">
-        <rdfs:range rdf:resource="&knowrob;English"/>
-        <rdfs:range rdf:resource="&knowrob;Greek"/>
+        <rdfs:range rdf:resource="&knowrob;en"/>
+        <rdfs:range rdf:resource="&knowrob;el"/>
         <rdfs:domain rdf:resource="&knowrob;Agent-Generic"/>
     </owl:ObjectProperty>
 
@@ -8074,11 +8074,11 @@ For predicates that relate things to measurable quantities that characterize the
         <rdfs:subClassOf rdf:resource="&knowrob;SocialConcepts"/>
     </owl:Class>
     
-    <owl:Class rdf:about="&knowrob;English">
+    <owl:Class rdf:about="&knowrob;en">
         <rdfs:subClassOf rdf:resource="&knowrob;HumanLanguage"/>
     </owl:Class>
     
-    <owl:Class rdf:about="&knowrob;Greek">
+    <owl:Class rdf:about="&knowrob;el">
         <rdfs:subClassOf rdf:resource="&knowrob;HumanLanguage"/>
     </owl:Class>
     
