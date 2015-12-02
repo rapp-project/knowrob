@@ -40,7 +40,7 @@
       direct_subclassesOf_withCheck/2,
       direct_superclassesOf_withCheck/2,
       valueToAttribute_withCheck/3,
-      userCognitiveTestPerformance/8,
+      userCognitiveTestPerformance/7,
       cognitiveTestsOfType/6,
       createCognitiveTest/5,
       cognitiveTestPerformed/7
@@ -68,7 +68,7 @@
             direct_subclassesOf_withCheck(r,r),
             direct_superclassesOf_withCheck(r,r),
             valueToAttribute_withCheck(r,r,r),
-            userCognitiveTestPerformance(r,r,r,r,r,r,r,r),
+            userCognitiveTestPerformance(r,r,r,r,r,r,r),
 	    cognitiveTestsOfType(r,r,r,r,r,r),
             createCognitiveTest(r,r,r,r,r),
             cognitiveTestPerformed(r,r,r,r,r,r,r),
@@ -378,7 +378,7 @@ valueToAttribute_withCheck(A,B,C):-
 	 rdf_has(A,rdfs:range,Cclass),
 	 rdf_assert(B,A,C).
 
-userCognitiveTestPerformance(A,C,B,Var,Dif,Timestamp,SC,P):-
+userCognitiveTestPerformance(A,C,B,Dif,Timestamp,SC,P):-
 rdf_has(P,knowrob:cognitiveTestPerformedPatient,A),
 rdf_has(P,knowrob:cognitiveTestPerformedTestType,B),
 rdf_has(B,rdf:type,C),

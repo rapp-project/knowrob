@@ -380,7 +380,7 @@ valueToAttribute_withCheck(A,B,C):-
 
 userCognitiveTestPerformance(A,C,B,Dif,Timestamp,SC,P):-
 rdf_has(P,knowrob:cognitiveTestPerformedPatient,A),
-rdf_has(P,knowrob:cognitiveTestPerformedTestType,B),
+rdf_has(P,knowrob:cognitiveTestPerformedTestName,B),
 rdf_has(B,rdf:type,C),
 rdf_has(B,knowrob:cognitiveTestDifficulty,literal(type(_, Dif))),
 rdf_has(P,knowrob:cognitiveTestPerformedTimestamp,literal(type(_, Timestamp))),
@@ -405,7 +405,7 @@ rdf_has(Patient,rdf:type,C),
 rdf_instance_from_class(D,B),
 rdf_has(Test,knowrob:cognitiveTestSubType,L),
 rdf_assert(B,knowrob:cognitiveTestPerformedPatient,Patient),
-rdf_assert(B,knowrob:cognitiveTestPerformedTestType,Test),
+rdf_assert(B,knowrob:cognitiveTestPerformedTestName,Test),
 rdf_assert(B,knowrob:cognitiveTestPerformedTimestamp,literal(type(xsd:string,Time))),
 rdf_assert(B,knowrob:cognitiveTestPerformedScore,literal(type(xsd:string,Score))).
 
