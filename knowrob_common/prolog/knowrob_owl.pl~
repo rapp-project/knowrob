@@ -40,7 +40,7 @@
       direct_subclassesOf_withCheck/2,
       direct_superclassesOf_withCheck/2,
       valueToAttribute_withCheck/3,
-      userCognitiveTestPerformance/7,
+      userCognitiveTestPerformance/8,
       cognitiveTestsOfType/6,
       createCognitiveTest/5,
       cognitiveTestPerformed/7
@@ -68,7 +68,7 @@
             direct_subclassesOf_withCheck(r,r),
             direct_superclassesOf_withCheck(r,r),
             valueToAttribute_withCheck(r,r,r),
-            userCognitiveTestPerformance(r,r,r,r,r,r,r),
+            userCognitiveTestPerformance(r,r,r,r,r,r,r,r),
 	    cognitiveTestsOfType(r,r,r,r,r,r),
             createCognitiveTest(r,r,r,r,r),
             cognitiveTestPerformed(r,r,r,r,r,r,r),
@@ -378,10 +378,11 @@ valueToAttribute_withCheck(A,B,C):-
 	 rdf_has(A,rdfs:range,Cclass),
 	 rdf_assert(B,A,C).
 
-userCognitiveTestPerformance(A,C,B,Dif,Timestamp,SC,P):-
+userCognitiveTestPerformance(A,C,B,Dif,Timestamp,SC,P,SubType):-
 rdf_has(P,knowrob:cognitiveTestPerformedPatient,A),
-rdf_has(P,knowrob:cognitiveTestPerformedTestType,B),
+rdf_has(P,knowrob:cognitiveTestPerformedTestName,B),
 rdf_has(B,rdf:type,C),
+rdf_has(B,knowrob:cognitiveTestSubType,SubType),
 rdf_has(B,knowrob:cognitiveTestDifficulty,literal(type(_, Dif))),
 rdf_has(P,knowrob:cognitiveTestPerformedTimestamp,literal(type(_, Timestamp))),
 rdf_has(P,knowrob:cognitiveTestPerformedScore,literal(type(_, SC))).
@@ -405,7 +406,7 @@ rdf_has(Patient,rdf:type,C),
 rdf_instance_from_class(D,B),
 rdf_has(Test,knowrob:cognitiveTestSubType,L),
 rdf_assert(B,knowrob:cognitiveTestPerformedPatient,Patient),
-rdf_assert(B,knowrob:cognitiveTestPerformedTestType,Test),
+rdf_assert(B,knowrob:cognitiveTestPerformedTestName,Test),
 rdf_assert(B,knowrob:cognitiveTestPerformedTimestamp,literal(type(xsd:string,Time))),
 rdf_assert(B,knowrob:cognitiveTestPerformedScore,literal(type(xsd:string,Score))).
 
