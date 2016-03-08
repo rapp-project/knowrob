@@ -43,7 +43,8 @@
       userCognitiveTestPerformance/8,
       cognitiveTestsOfType/6,
       createCognitiveTest/5,
-      cognitiveTestPerformed/7
+      cognitiveTestPerformed/7,
+      createObjectAndRegisterImage/5
     ]).
 
 :- use_module(library('crypt')).
@@ -72,6 +73,7 @@
 	    cognitiveTestsOfType(r,r,r,r,r,r),
             createCognitiveTest(r,r,r,r,r),
             cognitiveTestPerformed(r,r,r,r,r,r,r),
+	    createObjectAndRegisterImage(r,r,r,r,r),
             create_timepoint(+,r),
             get_timepoint(r),
             get_timepoint(+,r),
@@ -410,4 +412,9 @@ rdf_assert(B,knowrob:cognitiveTestPerformedTestName,Test),
 rdf_assert(B,knowrob:cognitiveTestPerformedTimestamp,literal(type(xsd:string,Time))),
 rdf_assert(B,knowrob:cognitiveTestPerformedScore,literal(type(xsd:string,Score))).
 
-
+createObjectAndRegisterImage(Object,ObjectClass,Patient,Time,Path):-
+rdf_has(Patient,rdf:type,knowrob:'Person'),
+rdf_instance_from_class(ObjectClass,Object),
+rdf_assert(Object,knowrob:belongsToUser,Patient),
+rdf_assert(Object,knowrob:imageFilePath,literal(type(xsd:string,Path))),
+rdf_assert(Object,knowrob:imageCreationTimestamp,literal(type(xsd:string,Time)))

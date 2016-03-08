@@ -89,7 +89,7 @@
     <!-- http://knowrob.org/kb/knowrob.owl#belongsToUser -->
 
     <owl:ObjectProperty rdf:about="&knowrob;belongsToUser">
-        <rdfs:range rdf:resource="&knowrob;Person"/>
+        <rdfs:range rdf:resource="&knowrob;Thing"/>
         <rdfs:domain rdf:resource="&knowrob;SpatialThing-Localized"/>
     </owl:ObjectProperty>
 
@@ -105,7 +105,7 @@
     
     <owl:ObjectProperty rdf:about="&knowrob;hasFallen">
         <rdfs:range rdf:resource="&knowrob;Fall"/>
-        <rdfs:domain rdf:resource="&knowrob;Person"/>
+        <rdfs:domain rdf:resource="&knowrob;Patient"/>
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&knowrob;humanMessageType">
@@ -142,7 +142,7 @@
 
 
     <owl:ObjectProperty rdf:about="&knowrob;cognitiveTestPerformedPatient">
-        <rdfs:range rdf:resource="&knowrob;Person"/>  
+        <rdfs:range rdf:resource="&knowrob;Patient"/>  
         <rdfs:domain rdf:resource="&knowrob;CognitiveTestPerformed"/>
     </owl:ObjectProperty>
 
