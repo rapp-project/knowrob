@@ -417,4 +417,4 @@ rdf_has(Patient,rdf:type,knowrob:'Person'),
 rdf_instance_from_class(ObjectClass,Object),
 rdf_assert(Object,knowrob:belongsToUser,Patient),
 rdf_assert(Object,knowrob:imageFilePath,literal(type(xsd:string,Path))),
-rdf_assert(Object,knowrob:imageCreationTimestamp,literal(type(xsd:string,Time)))
+rdf_assert(Object,knowrob:imageCreationTimestamp,literal(type(xsd:string,Time))).

@@ -412,9 +412,9 @@ rdf_assert(B,knowrob:cognitiveTestPerformedTestName,Test),
 rdf_assert(B,knowrob:cognitiveTestPerformedTimestamp,literal(type(xsd:string,Time))),
 rdf_assert(B,knowrob:cognitiveTestPerformedScore,literal(type(xsd:string,Score))).
 
-createObjectAndRegisterImage(Object,ObjectClass,Patient,Time,Path):-
-rdf_has(Patient,rdf:type,knowrob:'Person'),
+createObjectAndRegisterImage(Object,ObjectClass,Person,Time,Path):-
+rdf_has(Person,rdf:type,knowrob:'Person'),
 rdf_instance_from_class(ObjectClass,Object),
-rdf_assert(Object,knowrob:belongsToUser,Patient),
+rdf_assert(Object,knowrob:belongsToUser,Person),
 rdf_assert(Object,knowrob:imageFilePath,literal(type(xsd:string,Path))),
-rdf_assert(Object,knowrob:imageCreationTimestamp,literal(type(xsd:string,Time)))
+rdf_assert(Object,knowrob:imageCreationTimestamp,literal(type(xsd:string,Time))).
