@@ -41,8 +41,8 @@
       direct_superclassesOf_withCheck/2,
       valueToAttribute_withCheck/3,
       userCognitiveTestPerformance/8,
-      cognitiveTestsOfType/6,
-      createCognitiveTest/5,
+      cognitiveTestsOfType/7,
+      createCognitiveTest/6,
       cognitiveTestPerformed/7,
       createObjectAndRegisterImage/6
     ]).
@@ -70,8 +70,8 @@
             direct_superclassesOf_withCheck(r,r),
             valueToAttribute_withCheck(r,r,r),
             userCognitiveTestPerformance(r,r,r,r,r,r,r,r),
-	    cognitiveTestsOfType(r,r,r,r,r,r),
-            createCognitiveTest(r,r,r,r,r),
+	    cognitiveTestsOfType(r,r,r,r,r,r,r),
+            createCognitiveTest(r,r,r,r,r,r),
             cognitiveTestPerformed(r,r,r,r,r,r,r),
 	    createObjectAndRegisterImage(r,r,r,r,r,r),
             create_timepoint(+,r),
@@ -389,22 +389,23 @@ rdf_has(B,knowrob:cognitiveTestDifficulty,literal(type(_, Dif))),
 rdf_has(P,knowrob:cognitiveTestPerformedTimestamp,literal(type(_, Timestamp))),
 rdf_has(P,knowrob:cognitiveTestPerformedScore,literal(type(_, SC))).
 
-cognitiveTestsOfType(A,B,Path,Dif,Sub,Language):-
+cognitiveTestsOfType(A,B,Path,Dif,Sub,Language,Id):-
 rdf_has(B,rdf:type,A),
 rdf_has(B,knowrob:supportedLanguages,Language),
 rdf_has(B,knowrob:cognitiveTestFilePath,literal(type(_, Path))),
 rdf_has(B,knowrob:cognitiveTestDifficulty,literal(type(_, Dif))),
-rdf_has(B,knowrob:cognitiveTestSubType,Sub).
+rdf_has(B,knowrob:cognitiveTestSubType,Sub),
+rdf_has(B,knowrob:cognitiveTestId,literal(type(_, Id))).
 
-createCognitiveTest(A,B,D,E,F):-
+createCognitiveTest(A,B,D,E,F,G):-
 owl_subclass_of(F,A),
 rdf_instance_from_class(A,B),
 rdf_assert(B,knowrob:cognitiveTestDifficulty,literal(type(xsd:string,D))),
 rdf_assert(B,knowrob:cognitiveTestFilePath,literal(type(xsd:string,E))),
-rdf_assert(B,knowrob:cognitiveTestSubType,F).
+rdf_assert(B,knowrob:cognitiveTestSubType,F),
+rdf_assert(B,knowrob:cognitiveTestId,literal(type(xsd:string,G))).
 
 cognitiveTestPerformed(B,Patient,Test,Time,Score,C,D):-
-rdf_has(Patient,rdf:type,C),
 rdf_instance_from_class(D,B),
 rdf_has(Test,knowrob:cognitiveTestSubType,L),
 rdf_assert(B,knowrob:cognitiveTestPerformedPatient,Patient),
