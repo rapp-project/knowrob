@@ -86,16 +86,29 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    <!-- http://knowrob.org/kb/knowrob.owl#belongsToUser -->
-
     <owl:ObjectProperty rdf:about="&knowrob;belongsToUser">
-        <rdfs:range rdf:resource="&knowrob;Thing"/>
-        <rdfs:domain rdf:resource="&knowrob;Person"/>
+        <rdfs:range rdf:resource="&knowrob;Person"/>
+        <rdfs:domain rdf:resource="&knowrob;SpatialThing"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&knowrob;imageFilePath">
+        <rdfs:range rdf:resource="&xsd;string"/> 
+        <rdfs:domain rdf:resource="&knowrob;SpatialThing"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&knowrob;imageCreationTimestamp">
+        <rdfs:range rdf:resource="&xsd;int"/>
+        <rdfs:domain rdf:resource="&knowrob;SpatialThing"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&knowrob;caffeClass">
+        <rdfs:range rdf:resource="&xsd;string"/> 
+        <rdfs:domain rdf:resource="&knowrob;SpatialThing"/>
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&knowrob;hasFallen">
         <rdfs:range rdf:resource="&knowrob;Fall"/>
-        <rdfs:domain rdf:resource="&knowrob;Patient"/>
+        <rdfs:domain rdf:resource="&knowrob;Person"/>
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&knowrob;humanMessageType">
@@ -109,9 +122,6 @@
         <rdfs:range rdf:resource="&knowrob;el"/>
         <rdfs:domain rdf:resource="&knowrob;Agent-Generic"/>
     </owl:ObjectProperty>
-
-
-
 
     <owl:ObjectProperty rdf:about="&knowrob;cognitiveTestVariation">
         <rdfs:range rdf:resource="&xsd;int"/> 
@@ -128,11 +138,8 @@
         <rdfs:domain rdf:resource="&knowrob;CognitiveTests"/>
     </owl:ObjectProperty>
 
- <!--warning, I did not create a cognitiveTestSubType attribute -->
-
-
     <owl:ObjectProperty rdf:about="&knowrob;cognitiveTestPerformedPatient">
-        <rdfs:range rdf:resource="&knowrob;Patient"/>  
+        <rdfs:range rdf:resource="&knowrob;Person"/>  
         <rdfs:domain rdf:resource="&knowrob;CognitiveTestPerformed"/>
     </owl:ObjectProperty>
 
@@ -150,12 +157,6 @@
         <rdfs:range rdf:resource="&xsd;int"/>
         <rdfs:domain rdf:resource="&knowrob;CognitiveTestPerformed"/>
     </owl:ObjectProperty>
-
-
-
-
-
-
 
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -9845,6 +9846,16 @@ Note that a fictional or imaginary object (such as Frodo, Captain Queeg, or HAL9
     </owl:Class>
     
 
+    <!-- http://knowrob.org/kb/knowrob.owl#SpatialThing-Localized -->
+
+    <owl:Class rdf:about="&knowrob;SpatialThing-Localized-Unspecified">
+        <rdfs:subClassOf rdf:resource="&knowrob;SpatialThing"/>
+        <rdfs:comment rdf:datatype="&xsd;string">A specialization of both SpatialThing and TemporalThing. This is the collection of all spatial things, tangible or intangible, that can meaningfully be said to have location or position in the empirical universe.
+
+Examples of spatially-localized things include all PartiallyTangible things, such as trees and ships, as well as certain Intangible spatial things, like the EarthsEquator. Also included are those events that can be pinned-down to specific places (see Event-Localized), and thus all PhysicalEvents. Excluded from this collection are any SpatialThings that are not localized, such as -- arguably -- purely abstract geometrical figures (e.g. a Platonic sphere).
+
+Note that a fictional or imaginary object (such as Frodo, Captain Queeg, or HAL9000-TheComputer) is typically localized with respect to the universe of the fictional/imagnary context in which it is found, and so is an instance of SpatialThing-Localized with respect to that context.</rdfs:comment>
+    </owl:Class>
 
     <!-- http://knowrob.org/kb/knowrob.owl#SpatialThingTypeByShape -->
 
